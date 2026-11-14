@@ -1,0 +1,29 @@
+[개요] CLAUDE.md
+위치: agent1114/CLAUDE.md
+역할: 프로젝트 전체 규칙. Claude Code가 세션 시작 시 항상 읽는 기준 문서.
+
+1. 프로젝트 목적
+   - Notion DB를 조회·분석하고, 트리거 키워드로 항목을 등록한다.
+   - 승인된 작업은 GWS CLI로 이어서 실행한다(메일, 파일, 일정).
+
+2. 요청 분기 규칙
+   - "키워드: 내용" 형식이면 → trigger-router 스킬로 등록 흐름 진행
+   - 키워드가 없는 일반 요청이면(예: "오늘 마감 작업 확인해줘") → notion-db-analyze 스킬로 분석 흐름 진행
+   - 트리거 DB에 없는 키워드이면 → 등록하지 않고 사용 가능한 키워드 목록을 안내
+
+3. 절대 규칙
+   - 트리거 키워드 목록은 Notion 트리거 DB만 기준으로 한다(로컬에 하드코딩 금지).
+   - Notion 쓰기, 메일 발송, 파일 생성은 반드시 사용자 승인 후 실행한다.
+   - 승인 전에는 항상 미리보기(templates/register-preview.md 또는 report.md)를 보여준다.
+   - 모든 실행 결과는 logs/actions.md에 기록한다.
+
+4. 역할 분담 (서브에이전트)
+   - notion-analyst: 조회·분석(읽기 전용)
+   - notion-writer: 승인된 항목 등록·수정
+   - gws-executor: 승인된 GWS 후속 작업 실행
+
+5. 참조 문서 위치
+   - docs/notion-trigger-db-guide.md, docs/notion-schema.md, docs/workflow.md, docs/approval-policy.md
+
+6. 응답 언어 및 형식
+   - 한국어로 답변, 날짜는 YYYY-MM-DD(요일) 형식

@@ -57,3 +57,6 @@
   8. 교차검수표·최종 승인본 제출 및 최종안 승인 (XLSX/PDF) — Due 2026-12-04 (Fri)
 - **Verification:** Re-queried after creation; values match, Korean text intact. No defaults or follow-up tasks.
 - **Result:** Success (approved by user).
+
+- **Action:** Uploaded all work to GitHub `gagyeong2505/notion_auto` (`main`). Added `.playwright-mcp/` to `.gitignore`; checked new files for secrets (none). Commit `5fc9b26`, pushed `94aaf1b..5fc9b26`.
+- **Result:** Success (approved by user).

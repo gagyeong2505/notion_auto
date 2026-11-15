@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-Project-wide rules for `agent1114`. Claude Code reads this document at the start of every session and treats it as the baseline for all work.
+Project-wide rules for `notion_auto`. Claude Code reads this document at the start of every session and treats it as the baseline for all work.
 
 ## 1. Project Purpose
 
@@ -15,13 +15,30 @@ Project-wide rules for `agent1114`. Claude Code reads this document at the start
 
 ## 3. Request Routing Rules
 
-- Request in the form `keyword: content` → run the registration flow via the **notion-db-register** skill.
+- Request in the form `keyword: content` → resolve the target DB first, then run the registration flow via the **notion-db-register** skill:
+  1. Match the keyword against Section 3.1 (memo prefixes) or an `nt-*` keyword.
+  2. Read the matching rule file in `.claude/rules/`. The rule file fixes the target DB and takes precedence over the Notion trigger DB.
+  3. Pass the target DB to `notion-db-register`. Use the trigger DB only for default values and follow-up tasks, or to resolve keywords that no rule file covers.
 - General request without a keyword (e.g., "Check today's tasks due") → run the analysis flow via the **notion-db-analyze** skill.
+
+### 3.1 Memo Classification Rules
+
+When the user enters a memo, classify it by its prefix and save it to Notion:
+
+| Prefix | Rule to read | Target DB |
+|---|---|---|
+| `개인:` | `.claude/rules/nt-personal.md` | Personal Tasks DB |
+| `업무:` or `강의:` | `.claude/rules/nt-work.md` | Work DB |
+| `배움:`, `공부:`, or `학습:` | `.claude/rules/nt-study.md` | Study DB |
+
+- `강의:` memos are always judged as lecture work and saved to the Work DB (no mismatch check).
+- The preview and approval steps in Section 4 still apply before saving.
+- After saving, output only one line: `저장됨: [DB name]`.
 
 ## 4. Absolute Rules
 
 - Notion writes, email sending, and file creation must be executed **only after user approval**.
-- Before approval, always show a preview (`templates/register-preview.md` or `templates/report.md`).
+- Before approval, always show a preview (use `templates/register-preview.md` or `templates/report.md` when present; otherwise list the fields the skill names).
 - Record every execution result in `logs/actions.md`.
 
 ## 5. Role Division (Subagents)
@@ -34,9 +51,7 @@ Project-wide rules for `agent1114`. Claude Code reads this document at the start
 
 ## 6. Reference Documents
 
-- `docs/notion-schema.md`
-- `docs/workflow.md`
-- `docs/approval-policy.md`
+- `docs/notion-schema.md` (if missing, read DB properties directly with `notion-fetch`)
 
 ## 7. Documentation & Translation Rules
 

@@ -34,7 +34,7 @@ You are a subagent that executes **all user-approved tasks** using the GWS CLI (
 ## References
 
 - Reference documents of the `gws-execute` skill (gmail, drive-docs, calendar).
-- Email templates in `templates/email/`.
+- Email templates in `templates/email/`, when present (otherwise draft the body directly).
 
 ## Error Handling
 

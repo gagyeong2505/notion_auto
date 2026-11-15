@@ -1,6 +1,6 @@
 # CLAUDE.md (한글 번역본)
 
-`agent1114` 프로젝트 전체 규칙입니다. Claude Code는 세션을 시작할 때마다 이 문서를 읽고, 모든 작업의 기준으로 삼습니다.
+`notion_auto` 프로젝트 전체 규칙입니다. Claude Code는 세션을 시작할 때마다 이 문서를 읽고, 모든 작업의 기준으로 삼습니다.
 
 ## 1. 프로젝트 목적
 
@@ -15,13 +15,30 @@
 
 ## 3. 요청 분기 규칙
 
-- `키워드: 내용` 형식의 요청 → **notion-db-register** 스킬로 등록 흐름을 진행합니다.
+- `키워드: 내용` 형식의 요청 → 먼저 저장 DB를 정한 뒤 **notion-db-register** 스킬로 등록 흐름을 진행합니다.
+  1. 키워드를 3.1(메모 접두어) 또는 `nt-*` 키워드와 대조합니다.
+  2. `.claude/rules/`에서 해당 규칙 파일을 읽습니다. 저장 DB는 규칙 파일이 정하며, Notion 트리거 DB보다 우선합니다.
+  3. 정해진 저장 DB를 `notion-db-register`에 넘깁니다. 트리거 DB는 기본값과 후속 작업을 확인할 때, 또는 규칙 파일이 없는 키워드를 해석할 때만 사용합니다.
 - 키워드가 없는 일반 요청(예: "오늘 마감 작업 확인해줘") → **notion-db-analyze** 스킬로 분석 흐름을 진행합니다.
+
+### 3.1 메모 분류 규칙
+
+사용자가 메모를 입력하면 앞머리(접두어)에 따라 분류하고 Notion에 저장합니다.
+
+| 접두어 | 읽을 규칙 | 저장 DB |
+|---|---|---|
+| `개인:` | `.claude/rules/nt-personal.md` | Personal Tasks DB |
+| `업무:` 또는 `강의:` | `.claude/rules/nt-work.md` | Work DB |
+| `배움:`, `공부:` 또는 `학습:` | `.claude/rules/nt-study.md` | Study DB |
+
+- `강의:` 메모는 항상 강의 업무로 판단해 Work DB에 저장합니다(불일치 확인 없음).
+- 저장 전 미리보기와 승인 절차(4번 규칙)는 그대로 적용합니다.
+- 저장이 끝나면 `저장됨: [DB명]` 한 줄만 출력합니다.
 
 ## 4. 절대 규칙
 
 - Notion 쓰기, 메일 발송, 파일 생성은 반드시 **사용자 승인 후에만** 실행합니다.
-- 승인 전에는 항상 미리보기(`templates/register-preview.md` 또는 `templates/report.md`)를 보여줍니다.
+- 승인 전에는 항상 미리보기를 보여줍니다(`templates/register-preview.md` 또는 `templates/report.md`가 있으면 사용하고, 없으면 스킬에 적힌 항목을 나열합니다).
 - 모든 실행 결과는 `logs/actions.md`에 기록합니다.
 
 ## 5. 역할 분담 (서브에이전트)
@@ -34,9 +51,7 @@
 
 ## 6. 참조 문서
 
-- `docs/notion-schema.md`
-- `docs/workflow.md`
-- `docs/approval-policy.md`
+- `docs/notion-schema.md` (없으면 `notion-fetch`로 DB 속성을 직접 확인)
 
 ## 7. 문서 작성 및 번역 규칙
 

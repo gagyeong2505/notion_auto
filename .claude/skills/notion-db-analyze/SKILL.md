@@ -16,7 +16,7 @@ Handles query and analysis requests that do not use a trigger keyword.
 ## Procedure
 
 1. **Convert the request into query conditions**
-   - Map the request's expressions to filter conditions using the mapping in `docs/notion-schema.md`.
+   - Map the request's expressions to filter conditions using the mapping in `docs/notion-schema.md`; if it does not exist, fetch the target DB with `notion-fetch` and use the property names it returns.
      - e.g., "due today" → Date = today; "overdue" → Date < today AND Status ≠ Done; "incomplete" → Status ≠ Done.
    - Convert relative dates to absolute dates (Asia/Seoul, `YYYY-MM-DD (Day)`).
    - If the target DB or a condition is ambiguous, ask the user before querying.
@@ -25,7 +25,7 @@ Handles query and analysis requests that do not use a trigger keyword.
    - Pass the original request text and the converted conditions (date, status, assignee, etc.).
 
 3. **Report**
-   - Present the result in `templates/report.md` format: applied conditions, number of matching items, item list (title, date, status, assignee, link).
+   - Present the result in `templates/report.md` format (or as a plain list if the template does not exist): applied conditions, number of matching items, item list (title, date, status, assignee, link).
 
 4. **Suggest follow-up tasks**
    - Based on the follow-up candidates returned by `notion-analyst`, suggest follow-up tasks (e.g., drafting deadline-reminder emails, creating a summary document, registering calendar events).
@@ -35,5 +35,5 @@ Handles query and analysis requests that do not use a trigger keyword.
 ## Rules
 
 - No Notion writes in this skill. If the user asks to modify data during analysis, explain that it requires a separate registration/update flow with approval.
-- Use only property names confirmed in `docs/notion-schema.md`.
+- Use only property names confirmed in `docs/notion-schema.md` or, if it does not exist, by `notion-fetch`.
 - Do not execute follow-up tasks without approval.

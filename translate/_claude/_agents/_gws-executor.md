@@ -34,7 +34,7 @@ tools: Bash, Read, Write
 ## 참조
 
 - `gws-execute` 스킬의 reference 문서(gmail, drive-docs, calendar).
-- `templates/email/` 폴더의 메일 템플릿.
+- `templates/email/` 폴더의 메일 템플릿(있을 때만 사용하고, 없으면 본문을 직접 작성).
 
 ## 오류 처리
 

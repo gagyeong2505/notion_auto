@@ -30,7 +30,7 @@ Located in `.claude/skills/gws-execute/references/`:
 2. **Read the reference and build the commands**
    - If the matching reference document exists in `references/`, read it and build the commands according to it.
    - If it does not exist, check the syntax with `gws --help` (and subcommand help), and tell the user that no reference document was found.
-   - For mail, fill template variables from `templates/email/`.
+   - For mail, fill template variables from `templates/email/` when a matching template exists; otherwise draft the body directly.
 
 3. **Show a command preview and request approval**
    - Show the exact `gws` commands to be run and a summary of what each does (recipients, subject, file name, event time, etc.).

@@ -25,15 +25,15 @@ You are a subagent that writes to Notion **only for items the user has approved*
 
 - Classify each user-entered schedule by trigger keyword.
 - For each classified item:
-  - Determine the target DB from the trigger DB.
+  - Use the target DB passed by the main session (resolved from `CLAUDE.md` Section 3 and the matching `.claude/rules/` file). Only if none was passed, determine the target DB from the trigger DB.
   - Apply the trigger DB's **default values** (e.g., Status = Scheduled).
   - Register the item in the target DB.
-- If a schedule matches no trigger keyword, do not register it. Report it as unclassified, along with the list of available keywords.
+- If no target DB was passed and the schedule matches no trigger keyword, do not register it. Report it as unclassified, along with the list of available keywords.
 
 ## Procedure
 
-1. Confirm the target DB's property structure (`docs/notion-schema.md`, verified with `notion-fetch`).
-2. Look up the trigger DB for the target DB and default values.
+1. Confirm the target DB's property structure (`docs/notion-schema.md`, verified with `notion-fetch`; if the file does not exist, use `notion-fetch` alone).
+2. Look up the trigger DB for default values and follow-up tasks (and for the target DB only when none was passed).
 3. Create or update the page(s).
 4. Return the created page links.
 

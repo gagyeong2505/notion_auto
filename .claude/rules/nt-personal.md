@@ -16,8 +16,8 @@
 
 1. When the input has the form `nt-personal: content`, treat the content as a personal to-do.
 2. Follow the `notion-db-register` skill flow:
-   - Split the content into the Personal Tasks DB properties (`docs/notion-schema.md`).
-   - Show a preview in `templates/register-preview.md` format and get user approval.
+   - Split the content into the Personal Tasks DB properties (`docs/notion-schema.md`; if it does not exist, fetch the target DB with `notion-fetch` and use the property names it returns).
+   - Show a preview in `templates/register-preview.md` format (if the template does not exist, list the target DB, each property value, applied defaults, and planned follow-up tasks) and get user approval.
    - After approval, register via the `notion-writer` subagent.
 3. Record the result in `logs/actions.md`.
 

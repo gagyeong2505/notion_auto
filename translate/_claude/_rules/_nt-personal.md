@@ -16,8 +16,8 @@
 
 1. 입력이 `nt-personal: 내용` 형식이면 내용을 개인 할 일로 봅니다.
 2. `notion-db-register` 스킬 흐름을 따릅니다.
-   - 내용을 Personal Tasks DB의 속성에 맞게 나눕니다(`docs/notion-schema.md`).
-   - `templates/register-preview.md` 형식으로 미리보기를 보여주고 사용자 승인을 받습니다.
+   - 내용을 Personal Tasks DB의 속성에 맞게 나눕니다(`docs/notion-schema.md`). 이 파일이 없으면 `notion-fetch`로 대상 DB를 조회해 실제 속성 이름을 사용합니다.
+   - `templates/register-preview.md` 형식으로 미리보기를 보여주고 사용자 승인을 받습니다(템플릿이 없으면 대상 DB, 각 속성 값, 적용한 기본값, 예정된 후속 작업을 나열합니다).
    - 승인되면 `notion-writer` 서브에이전트로 등록합니다.
 3. 결과를 `logs/actions.md`에 기록합니다.
 

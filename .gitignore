@@ -9,3 +9,6 @@
 Thumbs.db
 Desktop.ini
 .DS_Store
+
+# Playwright MCP debug output
+.playwright-mcp/

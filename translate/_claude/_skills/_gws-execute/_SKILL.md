@@ -22,6 +22,8 @@ description: 승인된 후속 작업(Gmail, Drive/Docs/Sheets, Calendar)을 GWS 
 | 파일 | `references/drive-docs.md` — 문서·시트 생성, 폴더 지정 |
 | 일정 | `references/calendar.md` — 일정 등록, 시간대(Asia/Seoul), 알림 설정 |
 
+위 파일이 없으면 `gws-skill` 스킬(`.claude/skills/gws-skill/references/`)의 명령 문법을 사용합니다. 명령은 `.claude/skills/gws-skill/scripts/gws.sh`로 실행해야 `.env`의 인증 정보가 적용됩니다.
+
 ## 처리 절차
 
 1. **작업 종류 확인**

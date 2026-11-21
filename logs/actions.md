@@ -60,3 +60,44 @@
 
 - **Action:** Uploaded all work to GitHub `gagyeong2505/notion_auto` (`main`). Added `.playwright-mcp/` to `.gitignore`; checked new files for secrets (none). Commit `5fc9b26`, pushed `94aaf1b..5fc9b26`.
 - **Result:** Success (approved by user).
+
+## 2026-11-21 (Sat)
+
+- **Action:** Installed and authenticated the GWS CLI.
+  - `npm install -g @googleworkspace/cli` → `gws 0.22.5`.
+  - `winget` could not run, so the Google Cloud CLI 594.0.0 was installed from the official zip to `%LOCALAPPDATA%\Google\google-cloud-sdk`, and its `bin` folder was added to the user PATH.
+  - `gcloud auth login --no-launch-browser`: the user signed in through Playwright; Playwright clicked Continue/Allow.
+  - `gws auth setup --project gws-workspace-8694` (an existing project) stopped at OAuth client creation, which requires the Console. Enabled the Gmail, Drive, Docs, Sheets, and Calendar APIs with `gcloud services enable`.
+  - In the Cloud Console (via Playwright), created the Desktop OAuth client `gws CLI notion_auto` (`479429529840-4iggh57t...`) and wrote `~/.config/gws/client_secret.json`. The consent screen was already External / Testing with the account as a test user.
+  - `gws auth login -s gmail,drive,docs,sheets,calendar`: Playwright handled account selection, the unverified-app warning, and consent (all scopes).
+- **Verification:** `gws auth status` → `token_valid: true`, refresh token present, credentials encrypted, user `a01087548364@gmail.com`. Read-only tests passed: Drive files list, Gmail `getProfile`, Calendar `calendarList` (exit 0).
+- **Cleanup:** Deleted 2 Playwright snapshots that contained the client secret (`.playwright-mcp/` is git-ignored).
+- **Result:** Success (approved by user).
+
+- **Action:** Compiled the available `gws` commands and features (read-only: `--help` only, no API calls) for gmail, drive, docs, sheets, calendar, workflow, and auth. Output as tables in chat; no files saved.
+- **Result:** Success (approved by user).
+
+- **Action:** Created the `gws-skill` skill (`.claude/skills/gws-skill/`): `SKILL.md`, `references/` (gmail, drive, docs-sheets, calendar, common), `scripts/` (`_env.sh`, `gws.sh` wrapper that loads only `GOOGLE_WORKSPACE_*`/`GWS_*` keys from `.env`, `check.sh` readiness check with auto-install), and `.env.example`. Created the project-root `.env` (git-ignored) with the OAuth client ID/secret and project ID (option A: no exported token file). Added a pointer to `gws-skill` in `gws-execute/SKILL.md`.
+- **Verification:** All reference command examples validated with `--dry-run` (exit 0). `check.sh` → READY. Three fresh test agents using only the skill (today/tomorrow agenda; unread mail summary; mail draft and event preview with dry-run) all succeeded with exit 0 and no writes. Their feedback was applied: Gmail dry-run limits, `+triage` ordering and format, `--today`/`--days` semantics, empty-result reporting, privacy of mail content, harmless stderr lines, and precedence of project CLAUDE.md rules.
+- **Translation:** `translate/_claude/_skills/_gws-skill/` (SKILL and 5 references), `translate/_claude/_skills/_gws-execute/_SKILL.md`.
+- **Result:** Success (approved by user).
+
+- **Action:** Opened the Notion integrations page with Playwright (read-only). `notion.so/profile/integrations` redirected to login; the user signed in manually, and the page then redirected to `app.notion.com/developers/connections` (Developer tools → Developer connections).
+- **Findings:** 5 internal connections (API token, workspace "가경 김의 Notion", owner: the user): `notion_auto` (2026-11-15), `agent_09` (2026-11-08), `GG_AI_AG_2607` (2026-08-27), `GG_API` (2026-06-21), `GG_DB` (2026-06-21). Tokens were not opened or displayed. No settings changed.
+- **Result:** Success (approved by user).
+
+- **Action:** Opened the Notion page shared with the `notion_auto` connection, using Playwright (read-only). Path: Developer connections → `notion_auto` → Content access tab → Personal pages (1 page): top-level page "개인 일정 관리". The list entry is not a link, so the page was opened from the sidebar (`app.notion.com/p/4199b096dd3e80199881ceb1663a18da`).
+- **Findings:** The page holds 3 inline DBs, matching `docs/notion-schema.md`: Personal Tasks (Name/Date/Location/Person/Priority; 1 item), Work (Name/Collaborators/Due/Email/Priority/Registered; 10 items), and Study (Topic/Due/Summary; 1 item). The API token was not displayed. No settings or content changed.
+- **Result:** Success (approved by user).
+
+- **Action:** Registered the schedules from the Notion page "개인 일정 관리" in Google Calendar (`primary`) with `gws calendar events insert` (gws-skill). Colors: Personal = `4` Flamingo (pink), Work = `11` Tomato (red), Study = `10` Basil (green). No attendees (no invites sent); collaborators were written in the description.
+  - Personal (1): 남양주 방문 — 2026-11-21 (Sat), all day, location 남양주.
+  - Work (9): 커리큘럼 조율 회의 (온라인) 2026-11-16 (Mon) 14:00–15:00; 회의 결정사항·담당 일정표 메일 공유 and 정규 수업 개강 2026-11-17 (Tue); 교육목표·주차별 강의안 초안 v1 제출 2026-11-20 (Fri); 실습 과제 목록·평가 루브릭 제출 2026-11-24 (Tue); 강의자료 템플릿·대표 시안 제출 2026-11-27 (Fri); 통합 운영안·수강생 공지문 제출 2026-12-02 (Wed); 마감 산출물 취합·누락/형식 오류 사전 점검 2026-12-03 (Thu); 교차검수표·최종 승인본 제출 및 최종안 승인 2026-12-04 (Fri). All except the meeting are all-day.
+  - Study (1): 에이전트 업데이트 사항 업데이트 — 2026-11-18 (Wed), all day.
+  - Skipped: 수정된 커리큘럼 표 전달 (Work; no Due date).
+- **Notes:** The first attempt (a Python script calling `bash`) resolved to WSL bash and failed before any API call, so nothing was created. Rerun from Git Bash with JSON files: all 11 returned exit 0.
+- **Verification:** Before inserting, no events existed from 2026-11-16 to 2026-12-05. Afterwards, `events list` returned all 11 with the correct colors and Korean titles. Opened Google Calendar (Nov 2026 month view) in Playwright.
+- **Result:** Success (approved by user).
+
+- **Action:** Uploaded all work to GitHub `gagyeong2505/notion_auto` (`main`): new `gws-skill` (SKILL, 5 references, 3 scripts) with translations, `gws-execute` update, and action logs. Checked new files for secrets (none); `.env` stays ignored.
+- **Result:** Success (approved by user).

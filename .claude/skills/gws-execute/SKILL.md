@@ -22,6 +22,8 @@ Located in `.claude/skills/gws-execute/references/`:
 | File | `references/drive-docs.md` — creating docs/sheets, choosing folders |
 | Calendar | `references/calendar.md` — event registration, time zone (Asia/Seoul), reminders |
 
+If the files above do not exist, use the command syntax in the `gws-skill` skill (`.claude/skills/gws-skill/references/`). Run commands through `.claude/skills/gws-skill/scripts/gws.sh` so credentials load from `.env`.
+
 ## Procedure
 
 1. **Identify the task type**

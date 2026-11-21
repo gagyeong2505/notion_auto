@@ -99,5 +99,5 @@
 - **검증:** 등록 전 2026-11-16 ~ 2026-12-05 기존 일정 없음. 등록 후 `events list`로 11건의 색상과 한글 제목이 정상임을 확인함. Playwright로 Google Calendar(2026년 11월 월간 보기)를 열었음.
 - **결과:** 성공(사용자 승인 완료).
 
-- **작업:** 지금까지의 작업 전체를 GitHub `gagyeong2505/notion_auto`(`main`)에 업로드: 신규 `gws-skill`(SKILL, references 5개, scripts 3개)과 번역본, `gws-execute` 수정, 작업 로그. 신규 파일 민감 정보 점검(이상 없음), `.env`는 계속 제외됨.
+- **작업:** 지금까지의 작업 전체를 GitHub `gagyeong2505/notion_auto`(`main`)에 업로드: 신규 `gws-skill`(SKILL, references 5개, scripts 3개)과 번역본, `gws-execute` 수정, 작업 로그. 신규 파일 민감 정보 점검(이상 없음), `.env`는 계속 제외됨. 커밋 `ed61906`, 푸시 `88ba8f0..ed61906`.
 - **결과:** 성공(사용자 승인 완료).

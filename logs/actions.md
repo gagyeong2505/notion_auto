@@ -99,5 +99,5 @@
 - **Verification:** Before inserting, no events existed from 2026-11-16 to 2026-12-05. Afterwards, `events list` returned all 11 with the correct colors and Korean titles. Opened Google Calendar (Nov 2026 month view) in Playwright.
 - **Result:** Success (approved by user).
 
-- **Action:** Uploaded all work to GitHub `gagyeong2505/notion_auto` (`main`): new `gws-skill` (SKILL, 5 references, 3 scripts) with translations, `gws-execute` update, and action logs. Checked new files for secrets (none); `.env` stays ignored.
+- **Action:** Uploaded all work to GitHub `gagyeong2505/notion_auto` (`main`): new `gws-skill` (SKILL, 5 references, 3 scripts) with translations, `gws-execute` update, and action logs. Checked new files for secrets (none); `.env` stays ignored. Commit `ed61906`, pushed `88ba8f0..ed61906`.
 - **Result:** Success (approved by user).

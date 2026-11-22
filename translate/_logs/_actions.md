@@ -165,3 +165,8 @@
 | 2026-11-22 (일) | #1 실습 과제 목록·평가 루브릭 시트 + XLSX 내보내기 | sheets-writer | [[2026-11-22] 실습 과제 목록·평가 루브릭 시트](https://docs.google.com/spreadsheets/d/1oXBdWnzXeHN9vcZbXf6-91ogvSXEQurKdokuMlHBbzI/) + outputs/2026-11-22_실습과제목록_평가루브릭.xlsx | 1/3차 FAIL(제출 기한에 요일 누락) → 2/3차 PASS | 완료 |
 | 2026-11-22 (일) | #2 강의자료 템플릿·대표 시안 슬라이드(10장) + PPTX 내보내기 + 4~8번 슬라이드 PNG | slides-writer | [[2026-11-22] 강의자료 템플릿·대표 시안 슬라이드](https://docs.google.com/presentation/d/18XCPh2dpCJq82PUWOUGLjydhpPfAs2Lqn9AdB_UAXb0/) + outputs/2026-11-22_lecture_template_slides.pptx + outputs/2026-11-22_slides_png/(PNG 5장, 메인 세션이 내려받음) | 1/3차 FAIL(6번 슬라이드 날짜에 요일 누락) → 2/3차 PASS | 완료 |
 | 2026-11-22 (일) | #3 실습 과제·강의자료 시안 공유 메일(받는 사람 gagyeong2505@naver.com) | mail-writer | Gmail 초안 `r-7943070668579848103` (https://mail.google.com/mail/u/0/#drafts) | 1/3차 PASS | 초안 저장, 미발송(별도 발송 승인 대기) |
+
+## 2026-11-22 (일)
+
+- **작업:** 전체 작업을 GitHub `gagyeong2505/notion_auto`(`main`)에 업로드: PM 워크플로 에이전트(`pm`, `docs-writer`, `slides-writer`, `sheets-writer`, `mail-writer`, `inspection`), `pm-workflow` 규칙, `CLAUDE.md`·스킬 수정, 작업 로그, 번역본, 2026-11-22 산출물(XLSX, PPTX, 슬라이드 PNG, JSON 배치). 새 파일의 비밀값 여부 점검(없음), `.env`는 계속 제외. 커밋 `7ee3922`, push `38da411..7ee3922`.
+- **결과:** 성공.

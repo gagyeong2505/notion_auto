@@ -165,3 +165,8 @@
 | 2026-11-22 (Sun) | #1 실습 과제 목록·평가 루브릭 시트 + XLSX export | sheets-writer | [[2026-11-22] 실습 과제 목록·평가 루브릭 시트](https://docs.google.com/spreadsheets/d/1oXBdWnzXeHN9vcZbXf6-91ogvSXEQurKdokuMlHBbzI/) + outputs/2026-11-22_실습과제목록_평가루브릭.xlsx | Round 1/3 FAIL (due-date format lacked the day of the week) → Round 2/3 PASS | done |
 | 2026-11-22 (Sun) | #2 강의자료 템플릿·대표 시안 슬라이드 (10 slides) + PPTX export + PNG of slides 4–8 | slides-writer | [[2026-11-22] 강의자료 템플릿·대표 시안 슬라이드](https://docs.google.com/presentation/d/18XCPh2dpCJq82PUWOUGLjydhpPfAs2Lqn9AdB_UAXb0/) + outputs/2026-11-22_lecture_template_slides.pptx + outputs/2026-11-22_slides_png/ (5 PNGs, downloaded by the main session) | Round 1/3 FAIL (slide 6 date lacked the day of the week) → Round 2/3 PASS | done |
 | 2026-11-22 (Sun) | #3 실습 과제·강의자료 시안 공유 메일 (To gagyeong2505@naver.com) | mail-writer | Gmail draft `r-7943070668579848103` (https://mail.google.com/mail/u/0/#drafts) | Round 1/3 PASS | draft saved, not sent (awaiting separate send approval) |
+
+## 2026-11-22 (Sun)
+
+- **Action:** Uploaded all work to GitHub `gagyeong2505/notion_auto` (`main`): PM workflow agents (`pm`, `docs-writer`, `slides-writer`, `sheets-writer`, `mail-writer`, `inspection`), `pm-workflow` rule, `CLAUDE.md` / skill updates, action logs, translations, and the 2026-11-22 outputs (XLSX, PPTX, slide PNGs, JSON batches). Checked new files for secrets (none); `.env` stays ignored. Commit `7ee3922`, pushed `38da411..7ee3922`.
+- **Result:** Success.

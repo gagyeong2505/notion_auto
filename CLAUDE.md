@@ -48,6 +48,22 @@ When the user enters a memo, classify it by its prefix and save it to Notion:
 | `notion-analyst` | Query and analysis (read-only); filter by date, status, assignee, etc. and report results |
 | `notion-writer` | Create DB tables; classify schedules by trigger and register them; update approved items |
 | `gws-executor` | Execute all approved GWS follow-up tasks; draft emails first and send only after send approval |
+| `pm` | Manager only, never creates deliverables; splits a work request based on analyzed Notion data, assigns tasks to the writers, sends results to `inspection`, and reports to the user |
+| `docs-writer` | Reports and documents (Google Docs) via `gws-execute`; reports to `pm` |
+| `slides-writer` | Presentations and proposals (Google Slides) via `gws-execute`; reports to `pm` |
+| `sheets-writer` | Data sheets and spreadsheets (Google Sheets) via `gws-execute`; reports to `pm` |
+| `mail-writer` | Writes mail via `gws-execute`, saves it as a draft and asks for approval; sends only after send approval; reports to `pm` |
+| `inspection` | Reviews the writers' reported work (read-only), at most 3 rounds per task; reports to `pm` |
+
+### 5.1 PM Workflow
+
+For a work request based on analyzed Notion data (documents, slides, sheets, mail), follow `.claude/rules/pm-workflow.md`:
+
+1. `notion-analyst` (or `notion-db-analyze`) provides the data.
+2. `pm` returns an assignment plan → show it to the user as the todo list and wait for approval.
+3. The main session dispatches each writer per the plan (subagents cannot call each other). Writers return a preview first; they write only after user approval.
+4. Each writer reports to `pm` → `inspection` reviews (round 1–3) → `FAIL` goes back to the writer with a fix list.
+5. `pm` consolidates and reports to the user. Mail stays a draft until the user separately approves sending.
 
 ## 6. Reference Documents
 

@@ -58,4 +58,4 @@ description: 승인된 후속 작업(Gmail, Drive/Docs/Sheets, Calendar)을 GWS 
 
 - 승인되지 않은 명령은 실행하지 않습니다.
 - 메일 초안 작성 승인은 발송 승인이 아닙니다.
-- 이 스킬에서 `gws` 명령을 직접 실행하지 않습니다. 항상 `gws-executor` 서브에이전트를 사용합니다.
+- 이 스킬에서 `gws` 명령을 직접 실행하지 않습니다. 항상 서브에이전트를 사용합니다. 후속 작업은 `gws-executor`, `pm`이 할당한 작업은 해당 서비스의 작성 에이전트(`docs-writer`, `slides-writer`, `sheets-writer`, `mail-writer`)가 실행합니다. `inspection`은 이 스킬의 읽기 명령만 사용합니다.

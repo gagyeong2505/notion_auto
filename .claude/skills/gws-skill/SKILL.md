@@ -68,7 +68,7 @@ Other people can see sent mail, shared files, and calendar invites, and those ac
 **Project rules win over this table.** When the project's `CLAUDE.md` is stricter, follow it. In this project (`notion_auto`):
 - Show a todo list or plan first and wait for approval, even for read-only requests. For write tasks, the plan includes the full preview above.
 - Record each executed result, read-only queries included, in `logs/actions.md` (and its Korean translation `translate/_logs/_actions.md`). Do not log dry-runs or previews that were never executed.
-- Follow-up tasks handed off from Notion go through the `gws-execute` skill and the `gws-executor` subagent. Direct user requests can use this skill directly.
+- Follow-up tasks handed off from Notion go through the `gws-execute` skill and the `gws-executor` subagent. Tasks assigned by `pm` go through the matching writer subagent (`docs-writer`, `slides-writer`, `sheets-writer`, `mail-writer`). Direct user requests can use this skill directly.
 
 ## 5. Defaults for this user
 

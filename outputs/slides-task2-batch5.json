@@ -1,0 +1,22 @@
+{"requests":[
+{"createShape":{"objectId":"s09_title","shapeType":"TEXT_BOX","elementProperties":{"pageObjectId":"s09_qna","size":{"width":{"magnitude":640,"unit":"PT"},"height":{"magnitude":80,"unit":"PT"}},"transform":{"scaleX":1,"scaleY":1,"translateX":40,"translateY":130,"unit":"PT"}}}},
+{"insertText":{"objectId":"s09_title","text":"Q & A"}},
+{"updateTextStyle":{"objectId":"s09_title","textRange":{"type":"ALL"},"style":{"fontFamily":"Noto Sans KR","fontSize":{"magnitude":48,"unit":"PT"},"bold":true,"foregroundColor":{"opaqueColor":{"rgbColor":{"red":0.122,"green":0.227,"blue":0.576}}}},"fields":"fontFamily,fontSize,bold,foregroundColor"}},
+{"updateParagraphStyle":{"objectId":"s09_title","textRange":{"type":"ALL"},"style":{"alignment":"CENTER"},"fields":"alignment"}},
+{"createShape":{"objectId":"s09_sub","shapeType":"TEXT_BOX","elementProperties":{"pageObjectId":"s09_qna","size":{"width":{"magnitude":640,"unit":"PT"},"height":{"magnitude":50,"unit":"PT"}},"transform":{"scaleX":1,"scaleY":1,"translateX":40,"translateY":215,"unit":"PT"}}}},
+{"insertText":{"objectId":"s09_sub","text":"질문은 언제든 환영합니다\n다음 주(4주차) 예고: 생성형 AI로 DB 자동 입력하기"}},
+{"updateTextStyle":{"objectId":"s09_sub","textRange":{"type":"ALL"},"style":{"fontFamily":"Noto Sans KR","fontSize":{"magnitude":16,"unit":"PT"},"bold":false,"foregroundColor":{"opaqueColor":{"rgbColor":{"red":0.541,"green":0.58,"blue":0.651}}}},"fields":"fontFamily,fontSize,bold,foregroundColor"}},
+{"updateParagraphStyle":{"objectId":"s09_sub","textRange":{"type":"ALL"},"style":{"alignment":"CENTER"},"fields":"alignment"}},
+{"createShape":{"objectId":"s10_title","shapeType":"TEXT_BOX","elementProperties":{"pageObjectId":"s10_info","size":{"width":{"magnitude":640,"unit":"PT"},"height":{"magnitude":45,"unit":"PT"}},"transform":{"scaleX":1,"scaleY":1,"translateX":40,"translateY":25,"unit":"PT"}}}},
+{"insertText":{"objectId":"s10_title","text":"작업 정보"}},
+{"updateTextStyle":{"objectId":"s10_title","textRange":{"type":"ALL"},"style":{"fontFamily":"Noto Sans KR","fontSize":{"magnitude":28,"unit":"PT"},"bold":true,"foregroundColor":{"opaqueColor":{"rgbColor":{"red":0.122,"green":0.227,"blue":0.576}}}},"fields":"fontFamily,fontSize,bold,foregroundColor"}},
+{"createShape":{"objectId":"s10_bar","shapeType":"RECTANGLE","elementProperties":{"pageObjectId":"s10_info","size":{"width":{"magnitude":60,"unit":"PT"},"height":{"magnitude":4,"unit":"PT"}},"transform":{"scaleX":1,"scaleY":1,"translateX":40,"translateY":74,"unit":"PT"}}}},
+{"updateShapeProperties":{"objectId":"s10_bar","shapeProperties":{"shapeBackgroundFill":{"solidFill":{"color":{"rgbColor":{"red":0,"green":0.651,"blue":0.651}}}},"outline":{"propertyState":"NOT_RENDERED"}},"fields":"shapeBackgroundFill.solidFill.color,outline.propertyState"}},
+{"createShape":{"objectId":"s10_body","shapeType":"TEXT_BOX","elementProperties":{"pageObjectId":"s10_info","size":{"width":{"magnitude":640,"unit":"PT"},"height":{"magnitude":180,"unit":"PT"}},"transform":{"scaleX":1,"scaleY":1,"translateX":40,"translateY":95,"unit":"PT"}}}},
+{"insertText":{"objectId":"s10_body","text":"담당: 최유진\n마감: 2026-11-27 (Fri)\n제출 형식: PPTX(전체) + PNG(대표 슬라이드 4–8)\n데이터: ※ 샘플(가상) 데이터 — 실제 강의 내용이 아닙니다"}},
+{"updateTextStyle":{"objectId":"s10_body","textRange":{"type":"ALL"},"style":{"fontFamily":"Noto Sans KR","fontSize":{"magnitude":16,"unit":"PT"},"bold":false,"foregroundColor":{"opaqueColor":{"rgbColor":{"red":0.2,"green":0.2,"blue":0.2}}}},"fields":"fontFamily,fontSize,bold,foregroundColor"}},
+{"createShape":{"objectId":"s10_link","shapeType":"TEXT_BOX","elementProperties":{"pageObjectId":"s10_info","size":{"width":{"magnitude":640,"unit":"PT"},"height":{"magnitude":30,"unit":"PT"}},"transform":{"scaleX":1,"scaleY":1,"translateX":40,"translateY":290,"unit":"PT"}}}},
+{"insertText":{"objectId":"s10_link","text":"Notion 원본: https://app.notion.com/4199b096dd3e8154bed4fcfdaa5bdd4f"}},
+{"updateTextStyle":{"objectId":"s10_link","textRange":{"type":"ALL"},"style":{"fontFamily":"Noto Sans KR","fontSize":{"magnitude":13,"unit":"PT"},"bold":false,"foregroundColor":{"opaqueColor":{"rgbColor":{"red":0,"green":0.651,"blue":0.651}}},"link":{"url":"https://app.notion.com/4199b096dd3e8154bed4fcfdaa5bdd4f"}},"fields":"fontFamily,fontSize,bold,foregroundColor,link"}},
+{"deleteObject":{"objectId":"p"}}
+]}

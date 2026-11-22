@@ -101,3 +101,67 @@
 
 - **Action:** Uploaded all work to GitHub `gagyeong2505/notion_auto` (`main`): new `gws-skill` (SKILL, 5 references, 3 scripts) with translations, `gws-execute` update, and action logs. Checked new files for secrets (none); `.env` stays ignored. Commit `ed61906`, pushed `88ba8f0..ed61906`.
 - **Result:** Success (approved by user).
+
+- **Action:** Generated an image imagining the year 2080 with the Higgsfield MCP. Checked the account first (read-only): plan Ultra, 157.58 credits, no free-trial unlimited allowance. Compared low-cost settings for one 16:9 image: Z Image 0.15, GPT Image 2.6 (low, 1k) 0.75, Soul Location 1, Nano Banana 2 (1k) 1.5 credits. The user chose GPT Image 2.6.
+  - Model: `gpt_image_2_6`, quality `low`, resolution `1k`, aspect 16:9 (1344×752), 1 image, paid with credits (`use_unlim: false`), no project folder (`auto_create_project: false`).
+  - Prompt: a 2080 vertical megacity with vertical forests and glass towers, flying vehicles on sky lanes, robots and people on green terraces, clean solar/fusion energy, sunset golden hour, cinematic, photorealistic.
+  - Job ID: `3768fed2-36a9-4a7b-9ae5-bdce2dabaf2a` (2026-11-22 (Sun)). Result: https://d8j0ntlcm91z4.cloudfront.net/user_3AjzIg5pICHPrp8LGfDLJpUb0Ze/hf_20261122_061754_3768fed2-36a9-4a7b-9ae5-bdce2dabaf2a.png
+  - Credits: 157.58 → 156.83 (0.75 used).
+- **Result:** Success (approved by user).
+
+- **Action:** Regenerated the 2080 image with the Higgsfield Soul Location model (user's choice over Soul 2.0; both quoted at 1 credit for one 16:9 image).
+  - Model: `soul_location`, aspect 16:9 (output 2048×1152), 1 image, paid with credits (`use_unlim: false`), no project folder. Same prompt as the GPT Image 2.6 run. Higgsfield applied its "Location" style and titled the result "Spiral Sky Terrace" (seed 9673).
+  - Job ID: `c4e6ca93-099f-4c2d-8528-467ee620bce0` (2026-11-22 (Sun)). Result: https://d8j0ntlcm91z4.cloudfront.net/user_3AjzIg5pICHPrp8LGfDLJpUb0Ze/hf_20261122_061953_c4e6ca93-099f-4c2d-8528-467ee620bce0.png
+  - Credits: 156.83 → 156.71 (0.12 actually charged; the quote showed 1).
+- **Result:** Success (approved by user).
+
+- **Action:** Created 6 subagents in `.claude/agents/` (2026-11-22 (Sun)): `pm` (manager only; plans assignments and consolidates reports, `Read` tool only), `docs-writer` (Docs), `slides-writer` (Slides), `sheets-writer` (Sheets), `mail-writer` (Gmail; saves drafts, sends only after separate send approval), and `inspection` (read-only review, max 3 rounds per task). Writers and inspection preload the `gws-execute` and `gws-skill` skills; writers return a preview unless the handoff states user approval.
+  - Updated `CLAUDE.md` Section 5 (role table + new 5.1 PM Workflow), the `gws-execute` rule (pm-assigned writers may run their own service commands; inspection read-only), and the `gws-skill` handoff line.
+  - Added Korean translations for all new and changed files under `translate/`.
+  - Notes: subagents cannot call each other, so the main session dispatches agents per `pm`'s plan. The current gws login lacks the `slides` scope; `slides-writer` reports `blocked` until the user logs in again with slides.
+- **Result:** Success (approved by user).
+
+- **Action:** Added the pm rule file `.claude/rules/pm-workflow.md` (2026-11-22 (Sun)): request → agent mapping, task splitting (max 5 tasks, dependency order sheets → docs → slides → mail), writer handoff data, three approval gates (plan / write / send), inspection policy, stop conditions, logging format, and prohibited actions.
+  - `.claude/agents/pm.md` now tells pm to read the rule file before planning; `CLAUDE.md` Section 5.1 references it.
+  - Added/updated Korean translations: `translate/_claude/_rules/_pm-workflow.md`, `translate/_claude/_agents/_pm.md`, `translate/_CLAUDE.md`.
+- **Result:** Success (approved by user).
+
+- **Action:** gws CLI install and connection check (2026-11-22 (Sun)), read-only.
+  - `check.sh` exited 2: no `.env` in the project root (gws 0.22.5 is installed).
+  - `gws auth status`: OAuth client loaded from `~/.config/gws/client_secret.json` (fallback), `token_valid: true`, refresh token present, scopes: gmail.modify, drive, documents, spreadsheets, calendar (no slides).
+  - Live API calls: Calendar `+agenda --today` (0 events), Gmail `getProfile`, Drive `files list` all returned exit 0.
+  - Playwright login was not needed.
+- **Result:** Success (connected). Note: `check.sh` still exits 2 (missing `.env`) until one is created; the `scripts/gws.sh` wrapper works without it.
+
+- **Action:** gws Slides permission check (2026-11-22 (Sun)), read-only.
+  - `auth status`: no `presentations` scope in the login.
+  - Slides API `presentations get` on an existing deck ("스토리만들기", found via Drive `files list`) returned exit 0.
+  - `gws schema`: `slides.presentations.create` and `batchUpdate` accept the `drive` scope, which the current login already has.
+  - Re-login (`auth login ... slides`) was skipped because the existing `drive` scope already covers Slides read and write.
+- **Result:** Success (Slides API usable with the current login; no credential change).
+
+- **Action:** Opened the Notion parent page "개인 일정 관리" with Playwright MCP (2026-11-22 (Sun)), read-only.
+  - URL: `https://app.notion.com/p/4199b096dd3e80199881ceb1663a18da`
+  - The first visit showed the Notion login screen; the user logged in manually in the Playwright browser (no credentials entered by Claude).
+  - After reload, the Personal Tasks, Work, and Study inline databases were visible.
+- **Result:** Success (page open in the Playwright browser; no Notion data changed).
+
+- **Action:** Work DB analysis of tasks due this week (2026-11-22 (Sun)), read-only, via `notion-db-analyze` → `notion-analyst`.
+  - Filter: `Due` from 2026-11-22 (Sun) to 2026-11-28 (Sat), inclusive. 10 rows read.
+  - Due this week: 2. "실습 과제 목록·평가 루브릭 제출 (XLSX)" is due 2026-11-24 (Tue); "강의자료 템플릿·대표 시안 제출 (PPTX/PNG)" is due 2026-11-27 (Fri).
+  - Also found: 4 overdue rows, 1 row with no `Due`, and 3 rows due later. No row has a `Priority` set, and both page bodies of the tasks due this week are blank.
+- **Result:** Success (no Notion data changed). Next: the pm assignment plan, which needs user approval first.
+
+- **Action:** Fixed the gws `.env` blocker (2026-11-22 (Sun)), approved by the user.
+  - Created the project-root `.env` (already gitignored) from `~/.config/gws/client_secret.json`. Secret values were not printed.
+  - Added a template with no values: `.claude/skills/gws-skill/.env.example`.
+  - `check.sh --no-install` → READY (exit 0).
+- **Result:** Success.
+
+- **Action:** PM workflow for Work DB tasks due 2026-11-22 (Sun)–2026-11-28 (Sat), using fictional sample data (plan, then write approval).
+
+| Date | Task | Agent | Deliverable (link) | Inspection | Status |
+|---|---|---|---|---|---|
+| 2026-11-22 (Sun) | #1 실습 과제 목록·평가 루브릭 시트 + XLSX export | sheets-writer | [[2026-11-22] 실습 과제 목록·평가 루브릭 시트](https://docs.google.com/spreadsheets/d/1oXBdWnzXeHN9vcZbXf6-91ogvSXEQurKdokuMlHBbzI/) + outputs/2026-11-22_실습과제목록_평가루브릭.xlsx | Round 1/3 FAIL (due-date format lacked the day of the week) → Round 2/3 PASS | done |
+| 2026-11-22 (Sun) | #2 강의자료 템플릿·대표 시안 슬라이드 (10 slides) + PPTX export + PNG of slides 4–8 | slides-writer | [[2026-11-22] 강의자료 템플릿·대표 시안 슬라이드](https://docs.google.com/presentation/d/18XCPh2dpCJq82PUWOUGLjydhpPfAs2Lqn9AdB_UAXb0/) + outputs/2026-11-22_lecture_template_slides.pptx + outputs/2026-11-22_slides_png/ (5 PNGs, downloaded by the main session) | Round 1/3 FAIL (slide 6 date lacked the day of the week) → Round 2/3 PASS | done |
+| 2026-11-22 (Sun) | #3 실습 과제·강의자료 시안 공유 메일 (To gagyeong2505@naver.com) | mail-writer | Gmail draft `r-7943070668579848103` (https://mail.google.com/mail/u/0/#drafts) | Round 1/3 PASS | draft saved, not sent (awaiting separate send approval) |

@@ -58,4 +58,4 @@ If the files above do not exist, use the command syntax in the `gws-skill` skill
 
 - Never execute commands that have not been approved.
 - Approval to create an email draft is not approval to send it.
-- Do not run `gws` commands directly from this skill. Always use the `gws-executor` subagent.
+- Do not run `gws` commands directly from this skill. Always use a subagent: `gws-executor` for follow-up tasks, or the `pm`-assigned writer (`docs-writer`, `slides-writer`, `sheets-writer`, `mail-writer`) for its own service. `inspection` uses this skill for read-only commands only.

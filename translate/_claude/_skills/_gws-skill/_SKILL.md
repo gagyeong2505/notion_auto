@@ -68,7 +68,7 @@ bash $G gmail +triage --max 5
 **프로젝트 규칙이 이 표보다 우선합니다.** 프로젝트의 `CLAUDE.md`가 더 엄격하면 그쪽을 따릅니다. 이 프로젝트(`notion_auto`)에서는:
 - 읽기 전용 요청이라도 할 일 목록이나 계획을 먼저 보여주고 승인을 기다립니다. 쓰기 작업이면 계획에 위의 미리보기 전체를 넣습니다.
 - 실행한 결과는 읽기 전용 조회까지 포함해 모두 `logs/actions.md`와 번역본 `translate/_logs/_actions.md`에 기록합니다. 실행하지 않은 dry-run이나 미리보기는 기록하지 않습니다.
-- Notion에서 넘어온 후속 작업은 `gws-execute` 스킬과 `gws-executor` 서브에이전트로 처리합니다. 사용자가 직접 요청한 작업은 이 스킬로 바로 처리할 수 있습니다.
+- Notion에서 넘어온 후속 작업은 `gws-execute` 스킬과 `gws-executor` 서브에이전트로 처리합니다. `pm`이 할당한 작업은 해당 작성 에이전트(`docs-writer`, `slides-writer`, `sheets-writer`, `mail-writer`)가 처리합니다. 사용자가 직접 요청한 작업은 이 스킬로 바로 처리할 수 있습니다.
 
 ## 5. 이 사용자의 기본값
 

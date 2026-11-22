@@ -101,3 +101,67 @@
 
 - **작업:** 지금까지의 작업 전체를 GitHub `gagyeong2505/notion_auto`(`main`)에 업로드: 신규 `gws-skill`(SKILL, references 5개, scripts 3개)과 번역본, `gws-execute` 수정, 작업 로그. 신규 파일 민감 정보 점검(이상 없음), `.env`는 계속 제외됨. 커밋 `ed61906`, 푸시 `88ba8f0..ed61906`.
 - **결과:** 성공(사용자 승인 완료).
+
+- **작업:** Higgsfield MCP로 2080년을 상상한 이미지를 생성함. 먼저 계정을 확인함(읽기 전용): Ultra 플랜, 157.58크레딧, 무료 체험 무제한 생성 혜택 없음. 16:9 이미지 1장 기준으로 저가 설정의 비용을 비교함: Z Image 0.15, GPT Image 2.6(low, 1k) 0.75, Soul Location 1, Nano Banana 2(1k) 1.5크레딧. 사용자가 GPT Image 2.6을 선택함.
+  - 모델: `gpt_image_2_6`, 품질 `low`, 해상도 `1k`, 비율 16:9(1344×752), 1장, 크레딧으로 결제(`use_unlim: false`), 프로젝트 폴더 없음(`auto_create_project: false`).
+  - 프롬프트: 수직 숲과 유리 타워가 있는 2080년의 수직형 메가시티, 하늘길을 나는 비행체, 녹색 테라스 위의 로봇과 사람, 깨끗한 태양광·핵융합 에너지, 해 질 녘 골든아워, 영화 같은 분위기, 실사풍.
+  - 작업 ID: `3768fed2-36a9-4a7b-9ae5-bdce2dabaf2a`(2026-11-22 (일)). 결과: https://d8j0ntlcm91z4.cloudfront.net/user_3AjzIg5pICHPrp8LGfDLJpUb0Ze/hf_20261122_061754_3768fed2-36a9-4a7b-9ae5-bdce2dabaf2a.png
+  - 크레딧: 157.58 → 156.83(0.75 사용).
+- **결과:** 성공(사용자 승인 완료).
+
+- **작업:** Higgsfield Soul Location 모델로 2080년 이미지를 다시 생성함(사용자가 Soul 2.0 대신 선택함. 두 모델 모두 16:9 이미지 1장의 견적은 1크레딧).
+  - 모델: `soul_location`, 비율 16:9(출력 2048×1152), 1장, 크레딧으로 결제(`use_unlim: false`), 프로젝트 폴더 없음. 프롬프트는 GPT Image 2.6 때와 같음. Higgsfield가 "Location" 스타일을 적용했고 결과 제목은 "Spiral Sky Terrace"(시드 9673).
+  - 작업 ID: `c4e6ca93-099f-4c2d-8528-467ee620bce0`(2026-11-22 (일)). 결과: https://d8j0ntlcm91z4.cloudfront.net/user_3AjzIg5pICHPrp8LGfDLJpUb0Ze/hf_20261122_061953_c4e6ca93-099f-4c2d-8528-467ee620bce0.png
+  - 크레딧: 156.83 → 156.71(실제 차감 0.12, 견적은 1로 표시됨).
+- **결과:** 성공(사용자 승인 완료).
+
+- **작업:** `.claude/agents/`에 서브에이전트 6개를 만듦(2026-11-22 (일)): `pm`(매니저 역할만 수행, 할당 계획 수립과 보고 취합, `Read` 도구만 사용), `docs-writer`(Docs), `slides-writer`(Slides), `sheets-writer`(Sheets), `mail-writer`(Gmail, 임시저장 후 별도 발송 승인 시에만 발송), `inspection`(읽기 전용 검수, 작업당 최대 3회). 작성 에이전트와 inspection은 `gws-execute`, `gws-skill` 스킬을 미리 불러오며, 작성 에이전트는 사용자 승인이 전달되지 않으면 미리보기만 돌려줌.
+  - `CLAUDE.md` 섹션 5(역할 표와 새 5.1 PM 작업 흐름), `gws-execute` 규칙(pm이 할당한 작성 에이전트는 자기 서비스 명령 실행 가능, inspection은 읽기 전용), `gws-skill`의 작업 전달 규칙을 갱신함.
+  - 새로 만들거나 바꾼 파일 모두 `translate/`에 한국어 번역을 추가·갱신함.
+  - 참고: 서브에이전트끼리는 서로 호출할 수 없어 메인 세션이 `pm`의 계획대로 에이전트를 호출함. 현재 gws 로그인에 `slides` 범위가 없어 사용자가 slides를 포함해 다시 로그인하기 전까지 `slides-writer`는 `blocked`로 보고함.
+- **결과:** 성공(사용자 승인 완료).
+
+- **작업:** pm 규칙 파일 `.claude/rules/pm-workflow.md`를 추가함(2026-11-22 (일)): 요청 → 에이전트 매핑, 작업 분할(최대 5개, 의존 순서 sheets → docs → slides → mail), 작성 에이전트 전달 데이터, 승인 3단계(계획 / 작성 / 발송), 검수 정책, 중단 조건, 기록 형식, 금지 사항.
+  - `.claude/agents/pm.md`에 계획 전 규칙 파일을 읽도록 지시를 추가하고, `CLAUDE.md` 섹션 5.1에 참조를 추가함.
+  - 한국어 번역 추가·갱신: `translate/_claude/_rules/_pm-workflow.md`, `translate/_claude/_agents/_pm.md`, `translate/_CLAUDE.md`.
+- **결과:** 성공(사용자 승인 완료).
+
+- **작업:** gws CLI 설치 및 연결 확인(2026-11-22 (일)), 읽기 전용.
+  - `check.sh` 종료 코드 2: 프로젝트 루트에 `.env` 없음(gws 0.22.5는 설치됨).
+  - `gws auth status`: OAuth 클라이언트를 `~/.config/gws/client_secret.json`에서 대체 로드, `token_valid: true`, refresh token 있음, 권한 범위: gmail.modify, drive, documents, spreadsheets, calendar(slides 없음).
+  - 실제 API 호출: Calendar `+agenda --today`(일정 0건), Gmail `getProfile`, Drive `files list` 모두 종료 코드 0.
+  - Playwright 로그인은 필요하지 않았음.
+- **결과:** 성공(연결됨). 참고: `.env`를 만들기 전까지 `check.sh`는 종료 코드 2(`.env` 없음)를 내지만, `scripts/gws.sh` 래퍼는 `.env` 없이도 동작함.
+
+- **작업:** gws Slides 권한 확인(2026-11-22 (일)), 읽기 전용.
+  - `auth status`: 로그인 권한 범위에 `presentations` 없음.
+  - Drive `files list`로 찾은 기존 프레젠테이션("스토리만들기")에 Slides API `presentations get` 호출 → 종료 코드 0.
+  - `gws schema`: `slides.presentations.create`와 `batchUpdate`가 현재 로그인에 이미 있는 `drive` 범위를 허용함.
+  - 기존 `drive` 범위로 Slides 읽기·쓰기가 모두 가능해 재로그인(`auth login ... slides`)은 진행하지 않음.
+- **결과:** 성공(현재 로그인으로 Slides API 사용 가능, 인증 정보 변경 없음).
+
+- **작업:** Playwright MCP로 Notion 상위 페이지 "개인 일정 관리" 열기(2026-11-22 (일)), 읽기 전용.
+  - URL: `https://app.notion.com/p/4199b096dd3e80199881ceb1663a18da`
+  - 첫 접속 시 Notion 로그인 화면이 표시되어 사용자가 Playwright 브라우저에서 직접 로그인함(Claude는 계정 정보를 입력하지 않음).
+  - 새로고침 후 Personal Tasks, Work, Study 인라인 DB가 표시됨.
+- **결과:** 성공(Playwright 브라우저에 페이지 열림, Notion 데이터 변경 없음).
+
+- **작업:** 이번 주 마감 Work DB 작업 분석(2026-11-22 (일)), 읽기 전용, `notion-db-analyze` → `notion-analyst` 사용.
+  - 필터: `Due` 2026-11-22 (일)~2026-11-28 (토), 양 끝 포함. 전체 10건 조회.
+  - 이번 주 마감 2건: "실습 과제 목록·평가 루브릭 제출 (XLSX)"(마감 2026-11-24 (화)), "강의자료 템플릿·대표 시안 제출 (PPTX/PNG)"(마감 2026-11-27 (금)).
+  - 그 외: 기한 지남 4건, 마감일 없음 1건, 이후 마감 3건. `Priority`가 설정된 항목은 없고, 이번 주 마감 2건의 페이지 본문은 비어 있음.
+- **결과:** 성공(Notion 데이터 변경 없음). 다음 단계: pm 배정안 작성, 사용자 승인 후 진행.
+
+- **작업:** gws `.env` 문제 해결(2026-11-22 (일)), 사용자 승인.
+  - `~/.config/gws/client_secret.json`의 값으로 프로젝트 루트에 `.env` 생성(이미 gitignore 대상). 비밀값은 출력하지 않음.
+  - 값이 비어 있는 템플릿 `.claude/skills/gws-skill/.env.example` 추가.
+  - `check.sh --no-install` → READY(종료 코드 0).
+- **결과:** 성공.
+
+- **작업:** Work DB 마감 작업(2026-11-22 (일)~2026-11-28 (토)) PM 워크플로, 가상 샘플 데이터 사용(계획 승인 후 작성 승인).
+
+| 날짜 | 작업 | 에이전트 | 결과물(링크) | 검수 | 상태 |
+|---|---|---|---|---|---|
+| 2026-11-22 (일) | #1 실습 과제 목록·평가 루브릭 시트 + XLSX 내보내기 | sheets-writer | [[2026-11-22] 실습 과제 목록·평가 루브릭 시트](https://docs.google.com/spreadsheets/d/1oXBdWnzXeHN9vcZbXf6-91ogvSXEQurKdokuMlHBbzI/) + outputs/2026-11-22_실습과제목록_평가루브릭.xlsx | 1/3차 FAIL(제출 기한에 요일 누락) → 2/3차 PASS | 완료 |
+| 2026-11-22 (일) | #2 강의자료 템플릿·대표 시안 슬라이드(10장) + PPTX 내보내기 + 4~8번 슬라이드 PNG | slides-writer | [[2026-11-22] 강의자료 템플릿·대표 시안 슬라이드](https://docs.google.com/presentation/d/18XCPh2dpCJq82PUWOUGLjydhpPfAs2Lqn9AdB_UAXb0/) + outputs/2026-11-22_lecture_template_slides.pptx + outputs/2026-11-22_slides_png/(PNG 5장, 메인 세션이 내려받음) | 1/3차 FAIL(6번 슬라이드 날짜에 요일 누락) → 2/3차 PASS | 완료 |
+| 2026-11-22 (일) | #3 실습 과제·강의자료 시안 공유 메일(받는 사람 gagyeong2505@naver.com) | mail-writer | Gmail 초안 `r-7943070668579848103` (https://mail.google.com/mail/u/0/#drafts) | 1/3차 PASS | 초안 저장, 미발송(별도 발송 승인 대기) |
